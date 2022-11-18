@@ -1,0 +1,97 @@
+[package]
+authors = [ 'Hangsia Hong' ]
+description = 'Sns code is rewritten using substrate.'
+edition = '2021'
+homepage = 'https://sns.selendra.com/'
+license = 'Unlicense'
+name = "sns-resolvers"
+publish = false
+version = "0.1.0"
+
+[package.metadata.docs.rs]
+targets = [ 'x86_64-unknown-linux-gnu' ]
+
+[dependencies.sp-core]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+branch = "polkadot-v0.9.27"
+
+[dependencies.sp-io]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+branch = "polkadot-v0.9.27"
+
+[dependencies.sp-std]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+branch = "polkadot-v0.9.27"
+
+
+[dependencies.sp-runtime]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+branch = "polkadot-v0.9.27"
+
+
+[dependencies.codec]
+package = "parity-scale-codec"
+version = "3.0"
+default-features = false
+features = [ "derive", "max-encoded-len" ]
+
+[dependencies.frame-benchmarking]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+optional = true
+branch = "polkadot-v0.9.27"
+
+
+[dependencies.frame-support]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+branch = "polkadot-v0.9.27"
+
+
+[dependencies.frame-system]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+branch = "polkadot-v0.9.27"
+
+
+[dependencies.scale-info]
+version = "2.0"
+default-features = false
+features = [ "derive" ]
+
+
+[dependencies.serde]
+default-features = false
+version = '1.0'
+features = [ "derive", "alloc" ]
+
+[dependencies.sns-registrar]
+path = "../sns-registrar"
+default-features = false
+features = [ "runtime-benchmarks" ]
+optional = true
+
+[features]
+default = [ 'std' ]
+runtime-benchmarks = [
+    'frame-benchmarking/runtime-benchmarks',
+    'frame-support/runtime-benchmarks',
+    'frame-system/runtime-benchmarks',
+    'sns-registrar',
+]
+std = [
+    'codec/std',
+    'frame-support/std',
+    'frame-system/std',
+    'frame-benchmarking/std',
+    'sp-io/std',
+    'sp-runtime/std',
+    'sp-std/std',
+    'sp-core/std',
+    'scale-info/std',
+]
+try-runtime = [ 'frame-support/try-runtime' ]
